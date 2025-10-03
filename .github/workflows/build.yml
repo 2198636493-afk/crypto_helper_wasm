@@ -1,0 +1,30 @@
+name: Build WASM
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+
+      - name: Install wasm-pack
+        run: cargo install wasm-pack
+
+      - name: Build wasm (web target)
+        run: wasm-pack build --target web
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: wasm-pkg
+          path: pkg
