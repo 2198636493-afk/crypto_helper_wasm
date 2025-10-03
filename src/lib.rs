@@ -5,15 +5,23 @@ use getrandom::getrandom;
 
 use sha2::{Sha256, Digest};
 use hmac::{Hmac, Mac};
+
 use aes::Aes128;
 use aes::Aes256;
 use aes_gcm::{Aes128Gcm, Aes256Gcm, KeyInit as GcmKeyInit};
 use aes_gcm::aead::{Aead, OsRng, Key as GcmKey, Nonce};
+
 use block_modes::{BlockMode, Cbc};
 use block_modes::block_padding::Pkcs7;
+
 use ctr::Ctr128BE; // CTR with 128-bit BE counter
+
+// <<< ADD THESE TWO IMPORTS TO BRING CTR new() / apply_keystream INTO SCOPE >>>
+use cipher::{KeyIvInit, StreamCipher};
+
 use digest::generic_array::GenericArray;
 use std::convert::TryInto;
+
 
 type HmacSha256 = Hmac<Sha256>;
 
