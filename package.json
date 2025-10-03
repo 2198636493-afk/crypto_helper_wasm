@@ -1,0 +1,23 @@
+{
+  "name": "wasm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/2198636493-afk/crypto_helper_wasm.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/2198636493-afk/crypto_helper_wasm/issues"
+  },
+  "homepage": "https://github.com/2198636493-afk/crypto_helper_wasm#readme",
+  "dependencies": {
+    "simple-git": "^3.28.0"
+  }
+}
