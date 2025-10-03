@@ -13,23 +13,26 @@ jobs:
       # 1. 拉取代码
       - uses: actions/checkout@v4
 
-      # 2. 安装 Rust（稳定版）
+      # 2. 安装 Rust
       - name: Install Rust
         uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
           override: true
-          target: wasm32-unknown-unknown
 
-      # 3. 安装 wasm-pack（Rust 官方推荐的打包工具）
+      # 3. 添加 wasm32 编译目标
+      - name: Add wasm32 target
+        run: rustup target add wasm32-unknown-unknown
+
+      # 4. 安装 wasm-pack
       - name: Install wasm-pack
-        run: cargo install wasm-pack
+        run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
 
-      # 4. 编译为 WebAssembly (生成 pkg/ 文件夹)
+      # 5. 编译为 WebAssembly
       - name: Build wasm (web target)
         run: wasm-pack build --target web --release
 
-      # 5. 上传编译好的 wasm 包
+      # 6. 上传编译好的 wasm 包
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
